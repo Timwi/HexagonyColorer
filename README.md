@@ -23,6 +23,6 @@ This tool allows you take Hexagony programs, for example:
            | > = & { { ( \ = /
             \ { * ' " ] < $ _
 
-and create a graphics representation of the code execution paths, for example:
+and create a graphical representation of the code execution paths, for example:
 
 ![xyz](http://i.stack.imgur.com/ebY1A.png)

@@ -47,6 +47,8 @@
             this.mnuContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miStartPath = new System.Windows.Forms.ToolStripMenuItem();
             this.miSetPathStartPos = new System.Windows.Forms.ToolStripMenuItem();
+            this.miExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.miSep2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.ctSplit)).BeginInit();
             this.ctSplit.Panel1.SuspendLayout();
             this.ctSplit.Panel2.SuspendLayout();
@@ -125,6 +127,8 @@
             this.miSave,
             this.miSaveAs,
             this.miRevert,
+            this.miSep2,
+            this.miExport,
             this.miSep1,
             this.miExit});
             this.mnuFile.Name = "mnuFile";
@@ -202,7 +206,7 @@
             this.miStartPath,
             this.miSetPathStartPos});
             this.mnuContext.Name = "mnuContext";
-            this.mnuContext.Size = new System.Drawing.Size(296, 70);
+            this.mnuContext.Size = new System.Drawing.Size(296, 48);
             // 
             // miStartPath
             // 
@@ -217,6 +221,18 @@
             this.miSetPathStartPos.Size = new System.Drawing.Size(295, 22);
             this.miSetPathStartPos.Text = "Set &current path’s starting position to here";
             this.miSetPathStartPos.Click += new System.EventHandler(this.setStartPos);
+            // 
+            // miExport
+            // 
+            this.miExport.Name = "miExport";
+            this.miExport.Size = new System.Drawing.Size(268, 22);
+            this.miExport.Text = "&Export as PNG...";
+            this.miExport.Click += new System.EventHandler(this.export);
+            // 
+            // miSep2
+            // 
+            this.miSep2.Name = "miSep2";
+            this.miSep2.Size = new System.Drawing.Size(265, 6);
             // 
             // Mainform
             // 
@@ -261,6 +277,8 @@
         private System.Windows.Forms.ToolStripMenuItem miSetPathStartPos;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletePathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator miSep2;
+        private System.Windows.Forms.ToolStripMenuItem miExport;
     }
 }
 

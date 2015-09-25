@@ -610,5 +610,16 @@ namespace HexagonyColorer
                 rerender();
             }
         }
+
+        private void export(object _, EventArgs __)
+        {
+            if (_lastRendering != null)
+                using (var save = new SaveFileDialog { Title = "Export as PNG", DefaultExt = "png", Filter = "PNG image files (*.png)|*.png" })
+                {
+                    var result = save.ShowDialog();
+                    if (result == DialogResult.OK)
+                        _lastRendering.Save(save.FileName);
+                }
+        }
     }
 }
