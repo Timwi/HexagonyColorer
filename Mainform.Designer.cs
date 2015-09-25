@@ -40,6 +40,8 @@
             this.miSave = new System.Windows.Forms.ToolStripMenuItem();
             this.miSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.miRevert = new System.Windows.Forms.ToolStripMenuItem();
+            this.miSep2 = new System.Windows.Forms.ToolStripSeparator();
+            this.miExport = new System.Windows.Forms.ToolStripMenuItem();
             this.miSep1 = new System.Windows.Forms.ToolStripSeparator();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +49,6 @@
             this.mnuContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miStartPath = new System.Windows.Forms.ToolStripMenuItem();
             this.miSetPathStartPos = new System.Windows.Forms.ToolStripMenuItem();
-            this.miExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.miSep2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.ctSplit)).BeginInit();
             this.ctSplit.Panel1.SuspendLayout();
             this.ctSplit.Panel2.SuspendLayout();
@@ -173,6 +173,19 @@
             this.miRevert.Text = "&Revert";
             this.miRevert.Click += new System.EventHandler(this.revert);
             // 
+            // miSep2
+            // 
+            this.miSep2.Name = "miSep2";
+            this.miSep2.Size = new System.Drawing.Size(265, 6);
+            // 
+            // miExport
+            // 
+            this.miExport.Name = "miExport";
+            this.miExport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.miExport.Size = new System.Drawing.Size(268, 22);
+            this.miExport.Text = "&Export as PNG...";
+            this.miExport.Click += new System.EventHandler(this.export);
+            // 
             // miSep1
             // 
             this.miSep1.Name = "miSep1";
@@ -221,18 +234,6 @@
             this.miSetPathStartPos.Size = new System.Drawing.Size(295, 22);
             this.miSetPathStartPos.Text = "Set &current path’s starting position to here";
             this.miSetPathStartPos.Click += new System.EventHandler(this.setStartPos);
-            // 
-            // miExport
-            // 
-            this.miExport.Name = "miExport";
-            this.miExport.Size = new System.Drawing.Size(268, 22);
-            this.miExport.Text = "&Export as PNG...";
-            this.miExport.Click += new System.EventHandler(this.export);
-            // 
-            // miSep2
-            // 
-            this.miSep2.Name = "miSep2";
-            this.miSep2.Size = new System.Drawing.Size(265, 6);
             // 
             // Mainform
             // 
