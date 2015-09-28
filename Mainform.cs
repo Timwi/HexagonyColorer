@@ -76,7 +76,7 @@ namespace HexagonyColorer
             if (!canDestroy())
                 return;
 
-            using (var open = new OpenFileDialog { Title = "Open file", DefaultExt = "hexc", Filter = "Hexagony Colorations (*.hexc)|*.hexc" })
+            using (var open = new OpenFileDialog { Title = "Open file", DefaultExt = "hxgc", Filter = "Hexagony Colorations (*.hxgc)|*.hxgc" })
             {
                 if (HCProgram.Settings.LastDirectory != null)
                     try { open.InitialDirectory = HCProgram.Settings.LastDirectory; }
@@ -134,7 +134,7 @@ namespace HexagonyColorer
 
         private DialogResult saveAs()
         {
-            using (var save = new SaveFileDialog { Title = "Save file", DefaultExt = "hexc", Filter = "Hexagony Colorations (*.hexc)|*.hexc" })
+            using (var save = new SaveFileDialog { Title = "Save file", DefaultExt = "hxgc", Filter = "Hexagony Colorations (*.hxgc)|*.hxgc" })
             {
                 var result = save.ShowDialog();
                 if (result == DialogResult.OK)
@@ -174,7 +174,7 @@ namespace HexagonyColorer
             if (!canDestroy())
                 return;
 
-            using (var open = new OpenFileDialog { Title = "Open file", DefaultExt = "hex", Filter = "Hexagony source (*.hex)|*.hex" })
+            using (var open = new OpenFileDialog { Title = "Open file", DefaultExt = "hxg", Filter = "Hexagony source (*.hxg)|*.hxg" })
             {
                 if (HCProgram.Settings.LastDirectory != null)
                     try { open.InitialDirectory = HCProgram.Settings.LastDirectory; }
