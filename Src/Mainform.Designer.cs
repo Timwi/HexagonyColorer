@@ -40,6 +40,7 @@
             this.miSave = new System.Windows.Forms.ToolStripMenuItem();
             this.miSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.miRevert = new System.Windows.Forms.ToolStripMenuItem();
+            this.miRefreshSource = new System.Windows.Forms.ToolStripMenuItem();
             this.miSep2 = new System.Windows.Forms.ToolStripSeparator();
             this.miExport = new System.Windows.Forms.ToolStripMenuItem();
             this.miSep1 = new System.Windows.Forms.ToolStripSeparator();
@@ -127,6 +128,7 @@
             this.miSave,
             this.miSaveAs,
             this.miRevert,
+            this.miRefreshSource,
             this.miSep2,
             this.miExport,
             this.miSep1,
@@ -172,6 +174,14 @@
             this.miRevert.Size = new System.Drawing.Size(268, 22);
             this.miRevert.Text = "&Revert";
             this.miRevert.Click += new System.EventHandler(this.revert);
+            // 
+            // miRefreshSource
+            // 
+            this.miRefreshSource.Name = "miRefreshSource";
+            this.miRefreshSource.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.miRefreshSource.Size = new System.Drawing.Size(268, 22);
+            this.miRefreshSource.Text = "Re&fresh source";
+            this.miRefreshSource.Click += new System.EventHandler(this.refreshSource);
             // 
             // miSep2
             // 
@@ -280,6 +290,7 @@
         private System.Windows.Forms.ToolStripMenuItem deletePathToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator miSep2;
         private System.Windows.Forms.ToolStripMenuItem miExport;
+        private System.Windows.Forms.ToolStripMenuItem miRefreshSource;
     }
 }
 

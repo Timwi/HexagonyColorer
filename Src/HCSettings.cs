@@ -17,5 +17,6 @@ namespace HexagonyColorer
         public ManagedForm.Settings EditDialogSettings = new ManagedForm.Settings();
 
         public string LastDirectory;
+        public string LastSourceDirectory;
     }
 }

@@ -174,7 +174,7 @@ namespace HexagonyColorer
             if (!canDestroy())
                 return;
 
-            using (var open = new OpenFileDialog { Title = "Open file", DefaultExt = "hxg", Filter = "Hexagony source (*.hxg)|*.hxg" })
+            using (var open = new OpenFileDialog { Title = "Open Hexagony source file", DefaultExt = "hxg", Filter = "Hexagony source (*.hxg)|*.hxg" })
             {
                 if (HCProgram.Settings.LastDirectory != null)
                     try { open.InitialDirectory = HCProgram.Settings.LastDirectory; }
@@ -185,12 +185,14 @@ namespace HexagonyColorer
 
                 _currentFilePath = null;
                 _anyChanges = false;
-                _file = new HCFile
-                {
-                    HexagonySource = Regex.Replace(File.ReadAllText(open.FileName).Replace("`", ""), @"\s+", "")
-                };
+                _file = new HCFile { HexagonySource = readHexagonyFile(open.FileName) };
                 rerender();
             }
+        }
+
+        private static string readHexagonyFile(string filePath)
+        {
+            return Regex.Replace(File.ReadAllText(filePath).Replace("`", ""), @"\s+", "");
         }
 
         private void rerender()
@@ -620,6 +622,36 @@ namespace HexagonyColorer
                     if (result == DialogResult.OK)
                         _lastRendering.Save(save.FileName);
                 }
+        }
+
+        private void refreshSource(object _, EventArgs __)
+        {
+            // Try to locate the Hexagony source file from the location of the coloring file.
+            if (_currentFilePath == null)
+                return;
+            var filePath = Path.Combine(Path.GetDirectoryName(_currentFilePath), Path.GetFileNameWithoutExtension(_currentFilePath) + ".hxg");
+
+            if (!File.Exists(filePath))
+            {
+                using (var open = new OpenFileDialog { Title = "Open Hexagony source file", DefaultExt = "hxg", Filter = "Hexagony source (*.hxg)|*.hxg" })
+                {
+                    if (HCProgram.Settings.LastSourceDirectory == null)
+                        HCProgram.Settings.LastSourceDirectory = HCProgram.Settings.LastDirectory;
+                    if (HCProgram.Settings.LastDirectory != null)
+                        try { open.InitialDirectory = HCProgram.Settings.LastDirectory; }
+                        catch { }
+                    if (open.ShowDialog() == DialogResult.Cancel)
+                        return;
+                    HCProgram.Settings.LastSourceDirectory = Path.GetDirectoryName(open.FileName);
+                    filePath = open.FileName;
+                }
+            }
+
+            if (!File.Exists(filePath))
+                return;
+
+            _file.HexagonySource = readHexagonyFile(filePath);
+            rerender();
         }
     }
 }
