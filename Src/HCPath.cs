@@ -1,15 +1,5 @@
-﻿using System;
+﻿using System.Drawing;
 using RT.Util.ExtensionMethods;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using RT.Util;
-using RT.Util.ExtensionMethods;
-using RT.Util.Json;
 using RT.Util.Serialization;
 
 namespace HexagonyColorer
