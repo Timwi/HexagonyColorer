@@ -255,7 +255,7 @@
             this.Controls.Add(this.ctMainToolStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Mainform";
-            this.Text = "Hexagony Colorizer";
+            this.Text = "Hexagony Colorer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.exiting);
             this.ctSplit.Panel1.ResumeLayout(false);
             this.ctSplit.Panel2.ResumeLayout(false);
