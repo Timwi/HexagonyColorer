@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using RT.Util;
@@ -432,6 +433,8 @@ namespace HexagonyColorer
             editPath();
         }
 
+        private static Dictionary<string, Color> PredefinedColors = typeof(Color).GetProperties(BindingFlags.Static | BindingFlags.Public).ToDictionary(f => f.Name, f => (Color) f.GetValue(null));
+
         private void editPath()
         {
             var path = (HCPath) lstPaths.SelectedItem;
@@ -487,13 +490,26 @@ namespace HexagonyColorer
                 var chkStop = addCheckbox("S&top at [, ], #");
 
                 // Color
-                var pnlColor = new Panel { AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right };
                 layoutColor.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1));
-                layoutColor.Controls.Add(pnlColor, 0, 0);
-
-                var btnColor = new Button { Text = "...", Width = 50 };
                 layoutColor.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-                layoutColor.Controls.Add(btnColor, 1, 0);
+                layoutColor.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+                var pnlColor = new Panel
+                {
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                    MinimumSize = new Size(25, 10)
+                };
+                var ddColor = new ComboBox { Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top, Tag = path.Color, DropDownStyle = ComboBoxStyle.DropDownList };
+                foreach (var kvp in PredefinedColors)
+                    ddColor.Items.Add(kvp.Key);
+                ddColor.Items.Add("Custom");
+
+                var btnColor = new Button { Text = "...", Width = 30 };
+                layoutColor.Controls.Add(pnlColor, 0, 0);
+                layoutColor.Controls.Add(ddColor, 1, 0);
+                layoutColor.Controls.Add(btnColor, 2, 0);
 
                 // OK/Cancel buttons
                 var flowLayout = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.RightToLeft, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink };
@@ -521,8 +537,25 @@ namespace HexagonyColorer
                     ddBranch.Items.Add(tup.Item2);
 
                 // Populate all controls with the data
+                var populateColor = Ut.Lambda((Color color) =>
+                {
+                    pnlColor.BackColor = path.Color;
+                    var colorKey = PredefinedColors.FirstOrDefault(kvp => kvp.Value.R == path.Color.R && kvp.Value.G == path.Color.G && kvp.Value.B == path.Color.B).Key;
+                    if (colorKey == null)
+                    {
+                        ddColor.SelectedItem = "Custom";
+                        ddColor.Tag = path.Color;
+                        btnColor.Visible = true;
+                    }
+                    else
+                    {
+                        ddColor.SelectedItem = colorKey;
+                        btnColor.Visible = false;
+                    }
+                });
+
                 txtName.Text = path.Name;
-                pnlColor.BackColor = path.Color;
+                populateColor(path.Color);
                 chkDrawStart.Checked = path.DrawStart;
                 chkDrawEnd.Checked = path.DrawEnd;
                 ddStartDir.SelectedItem = path.IpStartDirection;
@@ -549,8 +582,22 @@ namespace HexagonyColorer
                         if (colorDlg.ShowDialog() == DialogResult.OK)
                         {
                             _settings.CustomColorsData = colorDlg.CustomColors;
-                            pnlColor.BackColor = colorDlg.Color;
+                            populateColor(colorDlg.Color);
                         }
+                    }
+                };
+
+                ddColor.SelectedIndexChanged += delegate
+                {
+                    if (ddColor.SelectedItem.Equals("Custom"))
+                    {
+                        pnlColor.BackColor = (Color) ddColor.Tag;
+                        btnColor.Visible = true;
+                    }
+                    else
+                    {
+                        pnlColor.BackColor = PredefinedColors[(string) ddColor.SelectedItem];
+                        btnColor.Visible = false;
                     }
                 };
 
