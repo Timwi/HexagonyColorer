@@ -9,6 +9,8 @@ namespace HexagonyColorer
         public ManagedForm.Settings FormSettings = new ManagedForm.Settings();
         public ManagedForm.Settings EditDialogSettings = new ManagedForm.Settings();
 
+        public int[] CustomColorsData = null;
+
         public string LastDirectory;
         public string LastSourceDirectory;
     }

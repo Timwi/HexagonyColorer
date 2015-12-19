@@ -543,8 +543,15 @@ namespace HexagonyColorer
                 btnColor.Click += delegate
                 {
                     using (var colorDlg = new ColorDialog { Color = pnlColor.BackColor, FullOpen = true, AnyColor = true })
+                    {
+                        if (_settings.CustomColorsData != null)
+                            colorDlg.CustomColors = _settings.CustomColorsData;
                         if (colorDlg.ShowDialog() == DialogResult.OK)
+                        {
+                            _settings.CustomColorsData = colorDlg.CustomColors;
                             pnlColor.BackColor = colorDlg.Color;
+                        }
+                    }
                 };
 
                 btnOk.Click += delegate
