@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
             this.ctSplit = new RT.Util.Controls.SplitContainerEx();
             this.ctScroll = new System.Windows.Forms.Panel();
             this.ctImage = new RT.Util.Controls.DoubleBufferedPanel();
@@ -252,6 +253,7 @@
             this.ClientSize = new System.Drawing.Size(1099, 673);
             this.Controls.Add(this.ctSplit);
             this.Controls.Add(this.ctMainToolStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Mainform";
             this.Text = "Hexagony Colorizer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.exiting);
